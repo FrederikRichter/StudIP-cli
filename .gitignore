@@ -8,6 +8,4 @@
 *.log
 *.log.*
 *.sig
-
-pkg/
-src/
+.env
