@@ -16,9 +16,6 @@ def cmdline_args():
     p = argparse.ArgumentParser(description=__doc__,
                                 formatter_class=argparse.RawDescriptionHelpFormatter, prog="studip-cli")
 
-    p.add_argument("--session", action="store_true",
-                   help="creates a user session for great performance improvements")
-
     group = p.add_mutually_exclusive_group(required=True)
     group.add_argument("--list-courses", action="store_true",
                        help="list your courses")
@@ -51,11 +48,8 @@ def main():
         elif isinstance(input, list):
             # Process the arguments after --download
             data.extend([arg, sys.stdin.read().replace("\n", " ").rstrip().split(" ")])
-    
-    # TODO
-    # if args.session:
-    #     if not browser.check_session():
-    #         browser.create_session()
+
+
 
     if len(data) == 0:
         courses.list()
