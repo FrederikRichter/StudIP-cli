@@ -11,7 +11,7 @@ from lib import *
 def cmdline_args():
     # Make parser object
 
-    default = []
+    default = None
 
     p = argparse.ArgumentParser(description=__doc__,
                                 formatter_class=argparse.RawDescriptionHelpFormatter, prog="studip-cli")
@@ -40,15 +40,20 @@ def main():
     """ Main program """
     args = cmdline_args()
 
-    # Check if any specified argument is not used
-    if not any(vars(args).values()):
-        data = sys.stdin.read().replace("\n", " ").rstrip().split(" ")
-        print("stdin", data)
-    else:
-        # Process the arguments after any specified option
-        for arg_name, arg_value in vars(args).items():
-            if arg_value:
-                print(f"{arg_name} args:", arg_value)
+    # store arg with data from stdin or argument [name, values]
+    data = []
+
+    # itererate over args to check if stdin or normal is used
+    for arg in vars(args):
+        input = getattr(args, arg)
+        if isinstance(input, list) and len(input) > 0:
+            data.extend([arg, getattr(args, arg)])
+        elif isinstance(input, list):
+            # Process the arguments after --download
+            data.extend([arg, sys.stdin.read().replace("\n", " ").rstrip().split(" ")])
+
+    
+
 
 if __name__ == "__main__":
     main()
