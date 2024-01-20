@@ -51,9 +51,22 @@ def main():
         elif isinstance(input, list):
             # Process the arguments after --download
             data.extend([arg, sys.stdin.read().replace("\n", " ").rstrip().split(" ")])
-
     
+    # TODO
+    # if args.session:
+    #     if not browser.check_session():
+    #         browser.create_session()
 
-
+    if len(data) == 0:
+        courses.list()
+    else:
+        match data[0]:
+            case "download":
+                files.download(data[1])
+            # TODO
+            # case "list-files":
+            #     files.list(data[1])
+            # case "view-courses":
+            #     courses.view(data[1])
 if __name__ == "__main__":
     main()
