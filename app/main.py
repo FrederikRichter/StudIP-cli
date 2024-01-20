@@ -49,10 +49,11 @@ def main():
             # Process the arguments after --download
             data.extend([arg, sys.stdin.read().replace("\n", " ").rstrip().split(" ")])
 
-
-
     if len(data) == 0:
         courses.list()
+
+    browser.check_session()
+
     else:
         match data[0]:
             case "download":
