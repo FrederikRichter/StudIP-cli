@@ -6,6 +6,7 @@ StudIP cli tool using the reverse engineered  JsonAPI of StudIP
 
 # Roadmap
 
+- argparser [DONE]
 - login handler [DONE]
   - session cache [DONE]
 - course lister
