@@ -1,5 +1,4 @@
 import requests
-import re
 import os
 from dotenv import load_dotenv
 import tempfile
@@ -11,6 +10,34 @@ load_dotenv()
 base_url = os.getenv("STUDIP_BASEURL")
 temp_folder = os.path.join(tempfile.gettempdir(), "STUDIP_CLI")
 
+def get_request(url_extension: str, params: dict) -> str:
+    session = requests.session()
+    session.cookies.set("Seminar_Session", read_session())
+
+    for retry in range(3):
+        response = session.get(base_url + url_extension, params=params)
+        match response.headers["Content-Type"].split(";")[0]:
+            case "text/html":
+                session.cookies.set("Seminar_Session", fix_session())
+            case _:
+                return response.text
+    return "[]"
+
+def download_file(params: dict):
+    session = requests.session()
+    session.cookies.set("Seminar_Session", read_session())
+
+    for retry in range(3):
+        response = session.get(base_url + "sendfile.php", params=params)
+        match response.headers["Content-Type"].split(";")[0]:
+            case "text/html":
+                session.cookies.set("Seminar_Session", fix_session())
+            case _:
+                with open(params["file_name"], "wb") as f:
+                    f.write(response.content)
+
+def post_request(url: str, params: dict, data: dict) -> str:
+    return ""
 
 def fix_session() -> str:
     wipe_sessions()
@@ -65,8 +92,6 @@ def create_session():
 
     # Gather Cookies
     cookies_response = session.get(base_url)
-
-    cookies = dict(cookies_response.cookies)
 
     # Parse HTML using lxml
     html_tree = html.fromstring(cookies_response.text)
