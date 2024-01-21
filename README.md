@@ -2,7 +2,9 @@
 StudIP cli tool using the reverse engineered  JsonAPI of StudIP written in pure Python
 
 # How to Install
-[PIPY](https://pypi.org/project/studip-cli/)
+```
+pip install studip-cli
+```
 
 
 # Motivation
