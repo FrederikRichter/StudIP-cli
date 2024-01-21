@@ -6,7 +6,7 @@ import sys
 import argparse
 
 # user imports
-from lib import *
+from lib import browser
 
 def cmdline_args():
     # Make parser object
@@ -49,15 +49,13 @@ def main():
             # Process the arguments after --download
             data.extend([arg, sys.stdin.read().replace("\n", " ").rstrip().split(" ")])
 
-    if len(data) == 0:
-        courses.list()
-
-    browser.check_session()
-
+    # if len(data) == 0:
+    #     courses.list()
     else:
         match data[0]:
             case "download":
-                files.download(data[1])
+                for item in data[1]:
+                    browser.download_file({"file_name": item.split("@@")[0], "file_id": item.split("@@")[1]})
             # TODO
             # case "list-files":
             #     files.list(data[1])
