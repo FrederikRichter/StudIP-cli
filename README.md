@@ -1,6 +1,14 @@
 # StudIP-cli
 StudIP cli tool using the reverse engineered  JsonAPI of StudIP
 
+# Motivation
+Bypass downslowing platform features and have an open source API to give power to users of StudIP. This tool has a focus on speed and extensibility, which is why a request only approach is used.
+
+# Features
+- Automatic Session management
+- stdin input + argument based input
+- Fast Mass File Downloader
+
 # Wiki
 [Awesome Wiki](../../wiki)
 
