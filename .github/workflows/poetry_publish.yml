@@ -1,0 +1,28 @@
+name: Upload Python Package
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    # Specifying a GitHub environment is optional, but strongly encouraged
+    environment: release
+    permissions:
+       # IMPORTANT: this permission is mandatory for trusted publishing
+      id-token: write
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v3
+      - name: Install Poetry
+        run: curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
+      - name: Add Poetry to path
+        run: echo "${HOME}/.poetry/bin" >> $GITHUB_PATH
+      - run: poetry install
+      - run: poetry config pypi-token.pypi "${{ secrets.PYPI_API_KEY }}"
+      - name: Publish package
+        run: poetry publish --build
