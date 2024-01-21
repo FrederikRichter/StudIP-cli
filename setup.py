@@ -20,7 +20,7 @@ def read_requirements(path):
 
 setup(
     name="StudIP-cli",
-    version=read("StudIP-cli", "0.1"),
+    version="0.0.1",  # Directly specify the version here
     description="StudIP command line interface to emulate a JSON API",
     url="https://github.com/FrederikRichter/StudIP-cli",
     long_description=read("README.md"),
