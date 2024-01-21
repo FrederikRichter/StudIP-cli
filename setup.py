@@ -19,7 +19,7 @@ def read_requirements(path):
     ]
 
 setup(
-    name="StudIP-cli",
+    name="studip-cli",
     version="0.0.1",  # Directly specify the version here
     description="StudIP command line interface to emulate a JSON API",
     url="https://github.com/FrederikRichter/StudIP-cli",
@@ -27,9 +27,8 @@ setup(
     long_description_content_type="text/markdown",
     author="Frederik Richter",
     packages=find_packages(exclude=["tests", ".github"]),
-    install_requires=read_requirements("requirements.txt"),
     entry_points={
-        "console_scripts": ["studip-cli = studip-cli.__main__:main"]
+        "console_scripts": ["studip-cli = app.__main__:main"]
     },
     # Include the setup hook
     setup_requires=["setuptools>=46.1.0", "wheel>=0.36.2"],
