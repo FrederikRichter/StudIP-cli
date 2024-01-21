@@ -10,12 +10,11 @@ load_dotenv()
 base_url = os.getenv("STUDIP_BASEURL")
 temp_folder = os.path.join(tempfile.gettempdir(), "STUDIP_CLI")
 
-def get_request(url_extension: str, params: dict) -> str:
+def get_request(url_extension: str, params={}, headers={}) -> str:
     session = requests.session()
     session.cookies.set("Seminar_Session", read_session())
-
     for retry in range(3):
-        response = session.get(base_url + url_extension, params=params)
+        response = session.get(base_url + "jsonapi.php/v1/" + url_extension, params=params, headers=headers)
         match response.headers["Content-Type"].split(";")[0]:
             case "text/html":
                 session.cookies.set("Seminar_Session", fix_session())

@@ -6,7 +6,7 @@ import sys
 import argparse
 
 # user imports
-import studip_cli.browser as browser
+import browser
 
 def cmdline_args():
     # Make parser object
@@ -49,17 +49,19 @@ def main():
             # Process the arguments after --download
             data.extend([arg, sys.stdin.read().replace("\n", " ").rstrip().split(" ")])
 
-    # if len(data) == 0:
-    #     courses.list()
+    if len(data) == 0:
+        print(browser.get_request("courses"))
     else:
         match data[0]:
             case "download":
                 for item in data[1]:
                     browser.download_file({"file_name": item.split("@@")[0], "file_id": item.split("@@")[1]})
-            # TODO
-            # case "list-files":
-            #     files.list(data[1])
-            # case "view-courses":
-            #     courses.view(data[1])
+            case "view_course":
+                for item in data[1]:
+                    print(browser.get_request("courses/" + item))
+            case "list_files":
+                for item in data[1]:
+                    print(browser.get_request("courses/" + item + "/file-refs", params={"page[limit]" : "-1"}))
+
 if __name__ == "__main__":
     main()
