@@ -2,7 +2,6 @@ import io
 import os
 from setuptools import find_packages, setup
 
-
 def read(*paths, **kwargs):
     content = ""
     with io.open(
@@ -12,14 +11,12 @@ def read(*paths, **kwargs):
         content = open_file.read().strip()
     return content
 
-
 def read_requirements(path):
     return [
         line.strip()
         for line in read(path).split("\n")
         if not line.startswith(('"', "#", "-", "git+"))
     ]
-
 
 setup(
     name="StudIP-cli",
@@ -33,6 +30,8 @@ setup(
     install_requires=read_requirements("requirements.txt"),
     entry_points={
         "console_scripts": ["studip-cli = studip-cli.__main__:main"]
-    }
+    },
+    # Include the setup hook
+    setup_requires=["setuptools>=46.1.0", "wheel>=0.36.2"],
+    python_requires=">=3.6",
 )
-
