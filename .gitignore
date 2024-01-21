@@ -1,3 +1,4 @@
+app/lib/__pycache__/
 build/
 dist/
 *.tar
