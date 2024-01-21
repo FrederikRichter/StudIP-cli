@@ -6,7 +6,7 @@ import sys
 import argparse
 
 # user imports
-from lib import browser
+import studip_cli.browser as browser
 
 def cmdline_args():
     # Make parser object

@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "studip-cli"
+version = "0.0.1"
+description = "Studip cli tool"
+authors = ["FrederikRichter <Frederik.Richter@mailbox.org>"]
+readme = "README.md"
+include=['studip_cli']
+[tool.poetry.dependencies]
+python = "^3.11"
+requests = "^2.31.0"
+lxml = "^5.1.0"
+temp = "^2020.7.2"
+python-dotenv = "^1.0.0"
+
+[tool.poetry.scripts]
+studip-cli = "studip_cli.main:main"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

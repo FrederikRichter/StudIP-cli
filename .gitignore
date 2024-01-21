@@ -1,4 +1,4 @@
-app/lib/__pycache__/
+studip_cli/__pycache__/
 build/
 dist/
 *.tar
