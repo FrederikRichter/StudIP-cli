@@ -1,5 +1,5 @@
 # StudIP-cli
-StudIP cli tool using the reverse engineered  JsonAPI of StudIP
+StudIP cli tool using the reverse engineered  JsonAPI of StudIP written in pure Python
 
 # Motivation
 Bypass downslowing platform features and have an open source API to give power to users of StudIP. This tool has a focus on speed and extensibility, which is why a request only approach is used.
