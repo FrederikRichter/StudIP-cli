@@ -1,6 +1,10 @@
 # StudIP-cli
 StudIP cli tool using the reverse engineered  JsonAPI of StudIP written in pure Python
 
+# How to Install
+[PIPY]{https://pypi.org/project/studip-cli/}
+
+
 # Motivation
 Bypass downslowing platform features and have an open source API to give power to users of StudIP. This tool has a focus on speed and extensibility, which is why a request only approach is used.
 
