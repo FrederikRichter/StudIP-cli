@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "studip-cli"
-version = "0.0.8"
+version = "0.0.9"
 description = "Studip cli tool"
 authors = ["FrederikRichter <Frederik.Richter@mailbox.org>"]
 readme = "README.md"
