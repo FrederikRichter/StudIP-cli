@@ -1,5 +1,5 @@
 # StudIP-cli
-StudIP cli tool using the reverse engineered  JsonAPI of StudIP written in pure Python
+StudIP cli tool using the reverse engineered  JsonAPI of StudIP written in pure Python while bypassing normal oauth authorization. This tool does not need to be approved by a system admin to work and use the json api.
 
 # How to Install
 ```
